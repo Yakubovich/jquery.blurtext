@@ -1,6 +1,6 @@
 /* 
  * jQuery BlurText - Blurs text instantly, through an animation, or in conjunction with an opacity change animation
- * Copyright(c) 2011 Rico Sta. Cruz <rico@ricostacruz.com>
+ * Copyright(c) 2012 Ilya Yakubovich <yak.nu>
  * MIT Licensed.
  */
 
