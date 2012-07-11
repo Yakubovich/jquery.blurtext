@@ -31,10 +31,10 @@
         $(this).data("blur", settings.blur);
 
         /* Make the text transparent and add a shadow */
-        $(this).css({ "text-shadow" : "0 0 " + settings.blur + "px " + settings.color,
-                      "filter"      : "Shadow(Color=" + settings.color + ", Strength=" + settings.blur + ")",
-                      "color"       : "transparent"
-                    });
+        $(this).css("text-shadow", "0 0 " + settings.blur + "px " + settings.color);
+       
+        if (!$.browser.msie)
+          $(this).css("color","transparent");
       })
 
       return this;
