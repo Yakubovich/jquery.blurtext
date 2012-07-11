@@ -7,9 +7,9 @@
     <script>
       $(document).ready(function(){
         $(".blur").blurText("to", { blur: 8, duration: 1000 });
-        $("li").blurText(10);
+        $("ul li").blurText(10);
 
-        $("li").hover(function(){
+        $("ul li").hover(function(){
           $(this).blurText("to", { blur: 0, duration: 500 });
         }, function() {
           $(this).blurText("to", { blur: 10, duration: 500 });
@@ -39,6 +39,13 @@
           $(this).find("span").blurText("to", { blur: 0 });
         });
 
+        $(".ex-callback").hover(function(){
+          $(this).find("span").blurText("to", { blur: 10 }, function() {
+            $(this).blurText("to", { blur: 0 });
+          });
+        }, function() {
+          $(this).find("span").blurText("to", { blur: 0 });
+        });
       });
     </script>
     <style>
@@ -79,7 +86,7 @@
         border-radius: 10px;
       }
 
-      li { 
+      ul li { 
         display: inline;
         font-size: 24px;
         padding: 20px;
@@ -170,7 +177,6 @@ $("p").blurText(<span class="highlight">"in"</span>);
 $("p").blurText(<span class="highlight">"to", 10</span>);
       </pre>
     </div>
-
     <div class="example">
       <ul>
         <li style="color:#FF7B7A;">Nav1</li>
@@ -190,11 +196,39 @@ $("li").hover(function(){
 });
       </pre>
     </div>
+
+    <div class="example ex-callback">
+      <span>Hover Over Me</span>
+    </div>
+    <div class="code">
+      <h3>Callback</h3>
+      <p>The last argument is a callback function, called at the end of the blur animation. This is the main advantage of using this method as opposed to CSS transitions.</p>
+      <pre>
+$("p").blurText("to", { blur: 10 }, <span class="highlight">function() {
+  $(this).blurText("to", { blur: 0});
+}</span>);
+      </pre>
+    </div>
     <br>
     <hr>
     <br>
     <h2>Browser Support</h2>
     <p>Works in the latest versions of Chrome, Firefox, and Safari. Does not work in any version of IE, but degrades gracefully (when fading elements in and out, the fade animation will still be applied).</p>
+    <br>
+    <hr>
+    <h2>Known Issues</h2>
+    <ol>
+      <li>Can't animate a child element while the parent is animating.</li>
+      <li>When blurring an element, stop all existing blur animations on that element.</li>
+      <li>Lack of IE support. I'm looking into using the "glow" filter for versions of IE that support it, but it doesn't seem to play nicely with animations.</li>
+    </ol>
+    <br>
+    <hr>
+    <h2>Future Improvements</h2>
+    <ol>
+      <li>Fix the above issues.</li>
+      <li>Offer an option to use CSS transitions instead of animating through jQuery, while still allowing callbacks.</li>
+    </ol>
     <br>
   </body>
 </html>
