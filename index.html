@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="jquery.min.js" type="text/javascript"></script>
+    <script src="jquery.blurtext.js" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        $(".blur").blurText("to", { blur: 8, duration: 1000 });
+        $("li").blurText(10);
+
+        $("li").hover(function(){
+          $(this).blurText("to", { blur: 0, duration: 500 });
+        }, function() {
+          $(this).blurText("to", { blur: 10, duration: 500 });
+        });
+
+        $(".ex-in").hover(function(){
+          $(this).find("span").blurText("in");
+        }, function() {
+          $(this).find("span").blurText("out");
+        });
+
+        $(".ex-out").hover(function(){
+          $(this).find("span").blurText("out");
+        }, function() {
+          $(this).find("span").blurText("in");
+        });
+
+        $(".ex-blur").hover(function(){
+          $(this).find("span").blurText();
+        }, function() {
+          $(this).find("span").blurText("to", { blur: 0, duration: 0});
+        });
+
+        $(".ex-to").hover(function(){
+          $(this).find("span").blurText("to", { blur: 10 });
+        }, function() {
+          $(this).find("span").blurText("to", { blur: 0 });
+        });
+
+      });
+    </script>
+    <style>
+      body {
+        font-family: "Georgia", sans-serif; 
+        margin: auto;
+        width: 900px;
+      }
+
+      h1 {
+        margin: 100px 0;
+        font-size: 42px;
+        text-transform: uppercase;
+        text-align: center;
+        background: white;
+        height: 1em;
+        color: #666;
+      }
+
+      h3 {
+        margin-top: 0px;
+      }
+
+      li { 
+        display: inline;
+        font-size: 24px;
+        padding: 20px;
+      }
+      .example {
+        border: 1px dashed #CFE5C6;
+        border-radius: 10px;
+        width: 400px;
+        float: left;
+        background: #F6FDF3;
+        margin-right: 50px;
+        margin-bottom: 50px;
+        padding: 20px;
+        min-height: 65px;
+        clear: both;
+        text-align: center;
+      }
+
+      .code {
+        float: left;
+        width: 388px;
+      }
+
+
+      .highlight {
+        background: #fafae0;
+        border-radius: 2px;
+        box-shadow: 1px 1px 1px rgba(0,0,0,.1);
+      }
+
+      hr {
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>jQuery <span class="blur">Blur</span> Text</h1>
+
+    <div class="example ex-blur">
+      <span>Hover Over Me</span>
+    </div>
+    <div class="code">
+      <h3>Blur</h3>
+      <p>Accepts either a blur amount (default 10), or options.</p>
+      <pre>
+$("p").blurText();
+      </pre>
+    </div>
+
+    <div class="example ex-out">
+      <span>Hover Over Me</span>
+    </div>
+    <div class="code">
+      <h3>Blur Out</h3>
+      <p>Accepts either a duration (default 1 second), or options.</p>
+      <pre>
+$("p").blurText(<span class="highlight">"out"</span>);
+      </pre>
+    </div>
+
+
+    <div class="example ex-in">
+      <span style="display:none;">Hover Over Me</span>
+    </div>
+    <div class="code">
+      <h3>Blur In</h3>
+      <p>Accepts either a duration (default 1 second), or options.</p>
+      <pre>
+$("p").blurText(<span class="highlight">"in"</span>);
+      </pre>
+    </div>
+
+    <div class="example ex-to">
+      <span>Hover Over Me</span>
+    </div>
+    <div class="code">
+      <h3>Blur to Specified Value</h3>
+      <p>Accepts either a duration (default 1 second), or options.</p>
+      <pre>
+$("p").blurText(<span class="highlight">"to", 10</span>);
+      </pre>
+    </div>
+
+    <div class="example">
+      <ul>
+        <li style="color:red;">Nav1</li>
+        <li style="color:blue;">Nav2</li>
+        <li>Nav3</li>
+      </ul>
+    </div>
+    <div class="code">
+      <h3>Navigation Example</h3>
+      <p>To specify both blur amount and duration, pass them as an object.</p>
+      <pre>
+$("li").blurText(10);
+$("li").hover(function(){
+  $(this).blurText(<span class="highlight">"to", { blur: 0, duration: 500</span>});
+}, function() {
+  $(this).blurText(<span class="highlight">"to", { blur: 10, duration: 500</span>});
+});
+      </pre>
+    </div>
+  </body>
+</html>
